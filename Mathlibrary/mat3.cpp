@@ -134,13 +134,6 @@ const vec3 & mat3::operator[](const int index) const
 
 mat3 mat3::operator*(const mat3 & rhs) const
 {
-	mat3 multi;
-	multi = multi * rhs;
-	return multi;
-}
-
-mat3 & mat3::operator*=(const mat3 & rhs)
-{
 	mat3 multiplacation;
 	multiplacation.xAxis.x = xAxis.x * rhs.xAxis.x;
 	multiplacation.xAxis.y = xAxis.y * rhs.xAxis.y;
@@ -152,7 +145,12 @@ mat3 & mat3::operator*=(const mat3 & rhs)
 	multiplacation.zAxis.y = zAxis.y * rhs.zAxis.y;
 	multiplacation.zAxis.z = zAxis.z * rhs.zAxis.z;
 	return multiplacation;
+}
 
+mat3 & mat3::operator*=(const mat3 & rhs)
+{
+	*this = *this * rhs;
+	return *this;
 }
 
 vec3 mat3::operator*(const vec3 & rhs) const
