@@ -1,5 +1,6 @@
-#include "vec4.h"
+#include"vec4.h"
 #include<cmath>
+#include<cfloat>
 vec4::vec4()
 {
 	x = 0;// setting x to zero
@@ -34,18 +35,11 @@ vec4 vec4::cross(const vec4 & rhs) const
 
 vec4 & vec4::normalize()
 {
-	float mag = sqrt(x * x + y * y + z * z + w * w);
-	vec4 magedValues;
-
-	magedValues.x = x / mag;
-	magedValues.y = y / mag;
-	magedValues.z = z / mag;
-	magedValues.w = w / mag;
-
-	return(magedValues);
+	*this = getNormalized();
+	return *this;
 }
 
-vec4 vec4::getNormalised() const
+vec4 vec4::getNormalized() const
 {
 	vec4 normalValues;
 
@@ -61,12 +55,10 @@ vec4 vec4::getNormalised() const
 
 	return normalValues;
 }
-
 vec4 & vec4::scale(const vec4 & rhs)
 {
 	return *this = { x * rhs.x,y * rhs.y,z * rhs.z,w * rhs.w };
 }
-
 vec4 vec4::getScaled(const vec4 & rhs) const
 {
 	return vec4(x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w);
@@ -95,42 +87,32 @@ vec4 vec4::operator/(const float rhs) const
 
 vec4 & vec4::operator+=(const vec4 & rhs)
 {
-	vec4 one;
-	one.x = x + rhs.x;
-	one.y = y + rhs.y;
-	one.z = z + rhs.z;
-	one.w = w + rhs.w;
-	return one;
+	*this = *this + rhs;
+	return *this;
 }
 
 vec4 & vec4::operator-=(const vec4 & rhs)
 {
-	vec4 one;
-	one.y = y - rhs.y;
-	one.z = z - rhs.z;
-	one.w = w - rhs.w;
-	one.x = x - rhs.x;
-	return one;
+	*this = *this - rhs;
+	return *this;
 }
 
 vec4 & vec4::operator*=(const float rhs)
 {
-	vec4 one;
-	one.x = x * rhs;
-	one.y = y * rhs;
-	one.z = z * rhs;
-	one.w = w * rhs;
-	return one;
+	this->x = this->x * rhs;
+	this->y = this->y * rhs;
+	this->z = this->z * rhs;
+	this->w = this->w * rhs;
+	return *this;
 }
 
 vec4 & vec4::operator/=(const float rhs)
 {
-	vec4 one;
-	one.x = x / rhs;
-	one.y = y / rhs;
-	one.z = z / rhs;
-	one.w = w / rhs;
-	return one;
+	this->x = this->x / rhs;
+	this->y = this->y / rhs;
+	this->z = this->z / rhs;
+	this->w = this->w / rhs;
+	return *this;
 }
 
 vec4 operator*(const float lhs, const vec4 & rhs)
@@ -145,8 +127,9 @@ vec4 operator*(const float lhs, const vec4 & rhs)
 
 bool vec4::operator==(const vec4 & rhs) const
 {
-	// checking to see if the four values are equal
-	if (x && y && z && w == rhs.x && rhs.y && rhs.z && rhs.w) {
+	float threshold = FLT_EPSILON * 100;
+	if ((abs(x - rhs.x) <= threshold) && (abs(y - rhs.y) <= threshold) && (abs(z - rhs.z) <= threshold) && (abs(w - rhs.w) <= threshold))
+	{
 		return true;
 	}
 	return false;
@@ -154,11 +137,12 @@ bool vec4::operator==(const vec4 & rhs) const
 
 bool vec4::operator!=(const vec4 & rhs) const
 {
-	// checking to see if the three values are not equal
-	if (x && y && z && w != rhs.x && rhs.y&&rhs.z && rhs.w) {
-		return true;
+	float threshold = FLT_EPSILON * 100;
+	if ((abs(x - rhs.x) <= threshold) && (abs(y - rhs.y) <= threshold) && (abs(z - rhs.z) <= threshold) && (abs(w - rhs.w) <= threshold))
+	{
+		return false;
 	}
-	return false;
+	return true;
 }
 
 vec4 vec4::operator-() const

@@ -11,6 +11,5 @@ public:
 	~barrel();
 	void update();
 	void draw();
-	void move();
 	void rotate();
 };

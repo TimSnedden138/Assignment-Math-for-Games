@@ -18,6 +18,7 @@ struct transform2d
 	vec2 forward() const;
 	void setForward(const vec2 &newFwd);
 	mat3 getTRSMatrix() const;
+	mat3 getWorldTRSMatrix() const;
 	mat3 getTSMatrix() const;
 	vec2 worldPosition() const;               // world position of this object
 	float worldRotation() const;              // world rotation of this object

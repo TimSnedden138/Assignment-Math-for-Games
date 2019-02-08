@@ -50,7 +50,7 @@
     <ClCompile Include="mathUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\source\repos\Assignment-Math-for-Games\raygame-master\Math\transform2d.cpp">
+    <ClCompile Include="transform2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

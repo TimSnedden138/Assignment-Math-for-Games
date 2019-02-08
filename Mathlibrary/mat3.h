@@ -1,4 +1,5 @@
 #pragma once
+#include"mathUtil.h"
 #include"vec3.h"
 #include"vec2.h"
 struct mat3

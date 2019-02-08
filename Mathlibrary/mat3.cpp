@@ -33,8 +33,8 @@ mat3 mat3::translation(float x, float y)
 {
 	mat3 translating;
 	translating = translating.identity();
-	translating.zAxis.x = x;
-	translating.zAxis.y = y;
+	translating.xAxis.z = x;
+	translating.yAxis.z = y;
 	return mat3(translating);
 }
 
@@ -48,6 +48,7 @@ mat3 mat3::translation(const vec2 & vec)
 mat3 mat3::rotation(float rot)
 {
 	mat3 rotation;
+	math_help::DEG_TO_RAD(rot);
 	rotation.m[0] = cos(rot);
 	rotation.m[3] = sin(rot);
 	rotation.m[1] = -cos(rot);
@@ -58,12 +59,8 @@ mat3 mat3::rotation(float rot)
 mat3 mat3::scale(float xScale, float yScale)
 {
 	mat3 scaled;
-	scaled.xAxis.x = scaled.xAxis.x + xScale;
-	scaled.xAxis.y = scaled.xAxis.y + xScale;
-	scaled.xAxis.z = scaled.xAxis.z + xScale;
-	scaled.yAxis.x = scaled.yAxis.x + yScale;
-	scaled.yAxis.y = scaled.yAxis.y + yScale;
-	scaled.yAxis.z = scaled.yAxis.z + yScale;
+	scaled.xAxis.x = xScale;;
+	scaled.yAxis.y = yScale;
 	return mat3(scaled);
 }
 
@@ -71,11 +68,7 @@ mat3 mat3::scale(const vec2 & vec)
 {
 	mat3 scaled;
 	scaled.xAxis.x = scaled.xAxis.x + vec.x;
-	scaled.xAxis.y = scaled.xAxis.y + vec.x;
-	scaled.xAxis.z = scaled.xAxis.z + vec.x;
-	scaled.yAxis.x = scaled.yAxis.x + vec.y;
 	scaled.yAxis.y = scaled.yAxis.y + vec.y;
-	scaled.yAxis.z = scaled.yAxis.z + vec.y;
 	return mat3(scaled);
 }
 void mat3::set(float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9)

@@ -19,10 +19,10 @@ int main()
 	//--------------------------------------------------------------------------------------
 	int screenWidth = 800;
 	int screenHeight = 450;
-	barrel barrel;
-	tank tank;
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 	SetTargetFPS(60);
+	barrel barrel;
+	tank tank;
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
@@ -52,7 +52,6 @@ int main()
 		tank.move();
 		tank.rotate();
 		barrel.draw();
-		barrel.move();
 		barrel.rotate();
 		EndDrawing();
 		//----------------------------------------------------------------------------------

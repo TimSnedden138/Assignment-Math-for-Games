@@ -4,6 +4,7 @@ tank::tank()
 
 	tankPosv = { 250,250 };
 	tankPostr.localPos = { 250,250 };
+	tankImg = LoadTexture("Resource/tank.png");
 }
 
 tank::~tank()
@@ -17,7 +18,6 @@ void tank::update()
 
 void tank::draw()
 {
-	tankImg = LoadTexture("tank.png");
 	DrawTextureEx(tankImg, tankPosv, tankPostr.localRot, 1, WHITE);
 }
 void tank::move()

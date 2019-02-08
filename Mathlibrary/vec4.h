@@ -12,7 +12,7 @@ public:
 	vec4 cross(const vec4 &rhs) const;
 
 	vec4 &normalize();
-	vec4 getNormalised() const;
+	vec4 getNormalized() const;
 
 	vec4 &scale(const vec4 &rhs);
 	vec4 getScaled(const vec4 &rhs) const;

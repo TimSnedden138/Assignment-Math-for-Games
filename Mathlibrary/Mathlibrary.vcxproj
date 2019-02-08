@@ -123,9 +123,9 @@
     <ClInclude Include="vec4.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\source\repos\Assignment-Math-for-Games\raygame-master\Math\transform2d.cpp" />
     <ClCompile Include="mat3.cpp" />
     <ClCompile Include="mathUtil.cpp" />
+    <ClCompile Include="transform2d.cpp" />
     <ClCompile Include="vec2.cpp" />
     <ClCompile Include="vec3.cpp" />
     <ClCompile Include="vec4.cpp" />
