@@ -24,7 +24,7 @@ int main()
 	barrel barrel;
 	tank tank;
 	//--------------------------------------------------------------------------------------
-
+	barrel.barrelPostr.setParent(&tank.tankPostr);
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
@@ -38,8 +38,7 @@ int main()
 		BeginDrawing();
 
 		ClearBackground(BLACK);
-
-		DrawText("Rotations:", 0, 20, 20, RED);
+		DrawText("Rotatiwsadons:", 0, 20, 20, RED);
 		DrawText("W to move forward", 5, 40, 20, RED);
 		DrawText("S to move backward", 5, 60, 20, RED);
 		DrawText("A to move left", 5, 80, 20, RED);

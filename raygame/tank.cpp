@@ -1,7 +1,6 @@
 #include "tank.h"
 tank::tank()
 {
-
 	tankPosv = { 250,250 };
 	tankPostr.localPos = { 250,250 };
 	tankImg = LoadTexture("Resource/tank.png");
@@ -18,26 +17,27 @@ void tank::update()
 
 void tank::draw()
 {
-	DrawTextureEx(tankImg, tankPosv, tankPostr.localRot, 1, WHITE);
+	DrawTextureEx(tankImg, tankPostr.worldPosition(), 0.0f, 1, WHITE);
 }
 void tank::move()
 {
+	vec2 moving = { 5,6 };
 	if (IsKeyDown(KEY_W))
 	{
-		tankPosv.y--;
+		tankPostr.localPos.y -= moving.y;
 
 	}
 	if (IsKeyDown(KEY_S))
 	{
-		tankPosv.y++;
+		tankPostr.localPos.y += moving.y;
 	}
 	if (IsKeyDown(KEY_A))
 	{
-		tankPosv.x--;
+		tankPostr.localPos.x -= moving.x;
 	}
 	if (IsKeyDown(KEY_D))
 	{
-		tankPosv.x++;
+		tankPostr.localPos.x += moving.x;
 	}
 }
 void tank::rotate()

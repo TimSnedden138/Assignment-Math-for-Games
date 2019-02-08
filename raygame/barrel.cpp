@@ -1,8 +1,8 @@
 #include "barrel.h"
 barrel::barrel()
 {
-	barrelPosv = {280,260 };
-	barrelPostr.localPos = { 290,260 };
+	barrelPosv = {0,0 };
+	barrelPostr.localPos = { 0,0 };
 	barrelImg = LoadTexture("Resource/barrel.png");
 }
 
@@ -17,7 +17,7 @@ void barrel::update()
 
 void barrel::draw()
 {
-	DrawTextureEx(barrelImg,barrelPosv, barrelPostr.worldRotation(), 1, WHITE);
+	DrawTextureEx(barrelImg,barrelPostr.worldPosition(), 0.0f, 1, WHITE);
 }
 void barrel::rotate() 
 {

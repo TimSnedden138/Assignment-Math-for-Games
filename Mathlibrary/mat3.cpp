@@ -47,19 +47,19 @@ mat3 mat3::translation(const vec2 & vec)
 
 mat3 mat3::rotation(float rot)
 {
-	mat3 rotation;
-	math_help::DEG_TO_RAD(rot);
+	mat3 rotation = mat3::identity();
+	rot = math_help::DEG_TO_RAD(rot);
 	rotation.m[0] = cos(rot);
 	rotation.m[3] = sin(rot);
-	rotation.m[1] = -cos(rot);
-	rotation.m[4] = -sin(rot);
+	rotation.m[4] = cos(rot);
+	rotation.m[1] = -sin(rot);
 	return rotation;
 }
 
 mat3 mat3::scale(float xScale, float yScale)
 {
-	mat3 scaled;
-	scaled.xAxis.x = xScale;;
+	mat3 scaled = mat3::identity();
+	scaled.xAxis.x = xScale;
 	scaled.yAxis.y = yScale;
 	return mat3(scaled);
 }
@@ -134,17 +134,46 @@ const vec3 & mat3::operator[](const int index) const
 
 mat3 mat3::operator*(const mat3 & rhs) const
 {
-	mat3 multiplacation;
-	multiplacation.xAxis.x = xAxis.x * rhs.xAxis.x;
-	multiplacation.xAxis.y = xAxis.y * rhs.xAxis.y;
-	multiplacation.xAxis.z = xAxis.z * rhs.xAxis.z;
-	multiplacation.yAxis.x = yAxis.x * rhs.yAxis.x;
-	multiplacation.yAxis.y = yAxis.y * rhs.yAxis.y;
-	multiplacation.yAxis.z = yAxis.z * rhs.yAxis.z;
-	multiplacation.zAxis.x = zAxis.x * rhs.zAxis.x;
-	multiplacation.zAxis.y = zAxis.y * rhs.zAxis.y;
-	multiplacation.zAxis.z = zAxis.z * rhs.zAxis.z;
-	return multiplacation;
+	mat3 multi;
+	mat3 returnValues;
+	multi.xAxis.x = xAxis.x * rhs.xAxis.x;
+	multi.xAxis.y = xAxis.y * rhs.yAxis.x;
+	multi.xAxis.z = xAxis.z * rhs.zAxis.x;
+	returnValues.xAxis.x = multi.xAxis.x + multi.xAxis.y + multi.xAxis.z;
+	multi.xAxis.x = xAxis.x * rhs.xAxis.y;
+	multi.xAxis.y = xAxis.y * rhs.yAxis.y;
+	multi.xAxis.z = xAxis.z * rhs.zAxis.y;
+	returnValues.xAxis.y = multi.xAxis.x + multi.xAxis.y + multi.xAxis.z;
+	multi.xAxis.x = xAxis.x * rhs.xAxis.z;
+	multi.xAxis.y = xAxis.y * rhs.yAxis.z;
+	multi.xAxis.z = xAxis.z * rhs.zAxis.z;
+	returnValues.xAxis.z = multi.xAxis.x + multi.xAxis.y + multi.xAxis.z;
+	multi.yAxis.x = yAxis.x * rhs.xAxis.x;
+	multi.yAxis.y = yAxis.y * rhs.yAxis.x;
+	multi.yAxis.z = yAxis.z * rhs.zAxis.x;
+	returnValues.yAxis.x = multi.yAxis.x + multi.yAxis.y + multi.yAxis.z;
+	multi.yAxis.x = yAxis.x * rhs.xAxis.y;
+	multi.yAxis.y = yAxis.y * rhs.yAxis.y;
+	multi.yAxis.z = yAxis.z * rhs.zAxis.y;
+	returnValues.yAxis.y = multi.yAxis.x + multi.yAxis.y + multi.yAxis.z;
+	multi.yAxis.x = yAxis.x * rhs.xAxis.z;
+	multi.yAxis.y = yAxis.y * rhs.yAxis.z;
+	multi.yAxis.z = yAxis.z * rhs.zAxis.z;
+	returnValues.yAxis.z = multi.yAxis.x + multi.yAxis.y + multi.yAxis.z;
+	multi.zAxis.x = zAxis.x * rhs.xAxis.x;
+	multi.zAxis.y = zAxis.y * rhs.yAxis.x;
+	multi.zAxis.z = zAxis.z * rhs.zAxis.x;
+	returnValues.zAxis.x = multi.zAxis.x + multi.zAxis.y + multi.zAxis.z;
+	multi.zAxis.x = zAxis.x * rhs.xAxis.y;
+	multi.zAxis.y = zAxis.y * rhs.yAxis.y;
+	multi.zAxis.z = zAxis.z * rhs.zAxis.y;
+	returnValues.zAxis.y = multi.zAxis.x + multi.zAxis.y + multi.zAxis.z;
+	multi.zAxis.x = zAxis.x * rhs.xAxis.z;
+	multi.zAxis.y = zAxis.y * rhs.yAxis.z;
+	multi.zAxis.z = zAxis.z * rhs.zAxis.z;
+	returnValues.zAxis.z = multi.zAxis.x + multi.zAxis.y + multi.zAxis.z;
+
+	return returnValues;
 }
 
 mat3 & mat3::operator*=(const mat3 & rhs)

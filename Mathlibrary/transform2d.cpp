@@ -37,7 +37,7 @@ void transform2d::setForward(const vec2 & newFwd)
 }
 mat3 transform2d::getTRSMatrix() const
 {
-	return(mat3::translation(localPos) * mat3::rotation(localRot)*mat3::scale(localScale.x, localScale.y));
+	return(mat3::scale(localScale.x, localScale.y) * mat3::rotation(localRot) * mat3::translation(localPos.x,localPos.y));
 }
 mat3 transform2d::getTSMatrix() const
 {
@@ -47,7 +47,14 @@ vec2 transform2d::worldPosition() const
 {
 	if (parent != nullptr)
 	{
+		//multiply local trsmatrix by parent trsmatrix
+		mat3 parentMat = parent->getTRSMatrix();
+		mat3 localMat = getTRSMatrix(); 
 
+		localMat = localMat * parentMat;
+
+		// convert last collum to vec2 and return
+		return vec2(localMat.xAxis.z,localMat.yAxis.z);
 	}
 	return localPos;
 }
@@ -55,7 +62,14 @@ float transform2d::worldRotation() const
 {
 	if (parent != nullptr)
 	{
+		//multiply local trsmatrix by parent trsmatrix
+		mat3 parentMat = parent->getTRSMatrix();
+		mat3 localMat = getTRSMatrix();
 
+		localMat = localMat * parentMat;
+		float rotation = atan2f(localMat.yAxis.x, localMat.xAxis.x);
+		rotation = math_help::RAD_TO_DEG(rotation);
+		return rotation;
 	}
 	return localRot;
 }
@@ -73,7 +87,7 @@ void transform2d::setParent(transform2d * _parent)
 }
 transform2d * transform2d::getParent()
 {
-		return parent;
+	return parent;
 }
 transform2d const * transform2d::getParent() const
 {
