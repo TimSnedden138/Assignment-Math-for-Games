@@ -75,9 +75,13 @@ float transform2d::worldRotation() const
 }
 vec2 transform2d::worldScale() const
 {
+	//multiply local trsmatrix by parent trsmatrix
+	mat3 parentMat = parent->getTRSMatrix();
+	mat3 localMat = getTRSMatrix();
+	mat3 scaleMat = parentMat * localMat;
 	if (parent != nullptr)
 	{
-
+		return vec2(scaleMat.xAxis.x, scaleMat.yAxis.y);
 	}
 	return localScale;
 }

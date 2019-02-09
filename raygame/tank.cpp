@@ -17,7 +17,7 @@ void tank::update()
 
 void tank::draw()
 {
-	DrawTextureEx(tankImg, tankPostr.worldPosition(), 0.0f, 1, WHITE);
+	DrawTextureEx(tankImg, tankPostr.worldPosition(), tankPostr.worldRotation(), 1, WHITE);
 }
 void tank::move()
 {
@@ -44,11 +44,11 @@ void tank::rotate()
 {
 	if (IsKeyDown(KEY_Q))
 	{
-		tankPostr.localRot--;
+		tankPostr.rotate(math_help::DEG_TO_RAD(10));
 	}
 	if (IsKeyDown(KEY_E))
 	{
-		tankPostr.localRot++;
+		tankPostr.rotate(math_help::DEG_TO_RAD(-10));
 	}
 
 }

@@ -43,7 +43,7 @@ int math_help::clamp(int value, int min, int max)
 
 const double math_help::DEG_TO_RAD(float rad)
 {
-	double radCon = (rad / (3.14159265359 / 180));// getting the degree of the rad
+	double radCon = (rad * (3.14159265359 / 180));// getting the degree of the rad
 	return radCon;
 }
 

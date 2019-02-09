@@ -7,6 +7,7 @@ public:
 	Vector2 barrelPosv;
 	Texture2D barrelImg;
 	transform2d barrelPostr;
+	float rot;
 	barrel();
 	~barrel();
 	void update();
