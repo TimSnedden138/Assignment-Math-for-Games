@@ -24,7 +24,7 @@ void tank::move()
 	vec2 moving = { 5,6 };
 	if (IsKeyDown(KEY_W))
 	{
-		tankPostr.localPos.y -= moving.y;
+		tankPostr.localPos.y-= moving.y;
 
 	}
 	if (IsKeyDown(KEY_S))

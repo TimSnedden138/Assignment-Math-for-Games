@@ -38,7 +38,7 @@ int main()
 		BeginDrawing();
 
 		ClearBackground(BLACK);
-		DrawText("Rotatiwsadons:", 0, 20, 20, RED);
+		DrawText("Rotation:", 0, 20, 20, RED);
 		DrawText("W to move forward", 5, 40, 20, RED);
 		DrawText("S to move backward", 5, 60, 20, RED);
 		DrawText("A to move left", 5, 80, 20, RED);
@@ -50,9 +50,9 @@ int main()
 		tank.draw();
 		tank.move();
 		tank.rotate();
-		barrel.draw();
 		barrel.rotate();
 		barrel.move();
+		barrel.draw();
 		EndDrawing();
 		//----------------------------------------------------------------------------------
 	}

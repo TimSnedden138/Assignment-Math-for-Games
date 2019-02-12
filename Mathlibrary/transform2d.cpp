@@ -50,8 +50,7 @@ vec2 transform2d::worldPosition() const
 		//multiply local trsmatrix by parent trsmatrix
 		mat3 parentMat = parent->getTRSMatrix();
 		mat3 localMat = getTRSMatrix(); 
-
-		localMat = localMat * parentMat;
+		localMat = parentMat * localMat;
 
 		// convert last collum to vec2 and return
 		return vec2(localMat.xAxis.z,localMat.yAxis.z);
@@ -66,7 +65,7 @@ float transform2d::worldRotation() const
 		mat3 parentMat = parent->getTRSMatrix();
 		mat3 localMat = getTRSMatrix();
 
-		localMat = localMat * parentMat;
+		localMat = parentMat * localMat;
 		float rotation = atan2f(localMat.yAxis.x, localMat.xAxis.x);
 		rotation = math_help::RAD_TO_DEG(rotation);
 		return rotation;

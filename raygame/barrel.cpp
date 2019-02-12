@@ -18,7 +18,7 @@ void barrel::update()
 
 void barrel::draw()
 {
-	DrawTextureEx(barrelImg, tankPostr.localPos, barrelPostr.worldRotation(),1,WHITE);
+	DrawTextureEx(barrelImg, barrelPostr.worldPosition(), barrelPostr.worldRotation(),1,WHITE);
 }
 void barrel::rotate()
 {
