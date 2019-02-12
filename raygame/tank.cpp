@@ -44,11 +44,11 @@ void tank::rotate()
 {
 	if (IsKeyDown(KEY_Q))
 	{
-		tankPostr.rotate(math_help::DEG_TO_RAD(10));
+		tankPostr.localRot += 1;
 	}
 	if (IsKeyDown(KEY_E))
 	{
-		tankPostr.rotate(math_help::DEG_TO_RAD(-10));
+		tankPostr.localRot -= 1;
 	}
 
 }

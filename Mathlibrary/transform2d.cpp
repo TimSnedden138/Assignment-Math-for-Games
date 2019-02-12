@@ -37,7 +37,7 @@ void transform2d::setForward(const vec2 & newFwd)
 }
 mat3 transform2d::getTRSMatrix() const
 {
-	return(mat3::scale(localScale.x, localScale.y) * mat3::rotation(localRot) * mat3::translation(localPos.x,localPos.y));
+	return(mat3::translation(localPos.x,localPos.y)* mat3::rotation(localRot) * mat3::scale(localScale.x, localScale.y));
 }
 mat3 transform2d::getTSMatrix() const
 {
