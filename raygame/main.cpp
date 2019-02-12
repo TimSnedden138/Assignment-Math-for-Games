@@ -52,6 +52,7 @@ int main()
 		tank.rotate();
 		barrel.draw();
 		barrel.rotate();
+		barrel.move();
 		EndDrawing();
 		//----------------------------------------------------------------------------------
 	}

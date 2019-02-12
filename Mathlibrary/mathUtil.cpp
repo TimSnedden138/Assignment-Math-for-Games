@@ -50,7 +50,7 @@ const double math_help::DEG_TO_RAD(float rad)
 const double math_help::RAD_TO_DEG(float deg)
 {
 
-	double degCon = (deg * (3.14159265359 / 180));//getting the rad of the deg
+	double degCon = (deg / (3.14159265359 / 180));//getting the rad of the deg
 	return degCon;
 }
 
